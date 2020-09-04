@@ -24,6 +24,10 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
+    marginBottom: '3em',
+  },
+  logo: {
+    height: '7em',
   },
 }));
 
@@ -34,7 +38,7 @@ const Header = () => {
       <ElevationScroll>
         <AppBar position="fixed">
           <Toolbar disableGutters>
-            <img src={logo} alt="company logo" />
+            <img src={logo} alt="company logo" className={classes.logo} />
           </Toolbar>
         </AppBar>
       </ElevationScroll>
