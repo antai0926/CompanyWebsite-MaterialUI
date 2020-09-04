@@ -7,6 +7,7 @@ import logo from '../../assets/logo.svg';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -66,11 +67,36 @@ const Header = () => {
               onChange={handleChange}
               className={classes.tabContainer}
             >
-              <Tab className={classes.tab} label="Home" />
-              <Tab className={classes.tab} label="Sevices" />
-              <Tab className={classes.tab} label="The Revolution" />
-              <Tab className={classes.tab} label="About us" />
-              <Tab className={classes.tab} label="Contact us" />
+              <Tab
+                className={classes.tab}
+                label="Home"
+                component={Link}
+                to="/"
+              />
+              <Tab
+                className={classes.tab}
+                label="Sevices"
+                component={Link}
+                to="/services"
+              />
+              <Tab
+                className={classes.tab}
+                label="The Revolution"
+                component={Link}
+                to="/revolution"
+              />
+              <Tab
+                className={classes.tab}
+                label="About us"
+                component={Link}
+                to="/about"
+              />
+              <Tab
+                className={classes.tab}
+                label="Contact us"
+                component={Link}
+                to="/contact"
+              />
             </Tabs>
             <Button
               variant="contained"
