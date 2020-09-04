@@ -4,6 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/styles';
 import logo from '../../assets/logo.svg';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -29,6 +31,17 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: '7em',
   },
+  tabContainer: {
+    marginLeft: 'auto',
+  },
+  tab: {
+    fontFamily: 'Raleway',
+    textTransform: 'none',
+    fontWeight: '700',
+    fontSize: '1rem',
+    minWidth: 10,
+    marginLeft: '25px',
+  },
 }));
 
 const Header = () => {
@@ -39,6 +52,13 @@ const Header = () => {
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <img src={logo} alt="company logo" className={classes.logo} />
+            <Tabs className={classes.tabContainer}>
+              <Tab className={classes.tab} label="Home" />
+              <Tab className={classes.tab} label="Sevices" />
+              <Tab className={classes.tab} label="The Revolution" />
+              <Tab className={classes.tab} label="About us" />
+              <Tab className={classes.tab} label="Contact us" />
+            </Tabs>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
