@@ -23,6 +23,12 @@ const theme = createMuiTheme({
       fontWeight: '700',
       fontSize: '1rem',
     },
+    estimate: {
+      fontFamily: 'Pacifico',
+      fontSize: '1re',
+      textTransform: 'none',
+      color: 'white',
+    },
   },
 });
 

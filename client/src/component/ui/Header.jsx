@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import logo from '../../assets/logo.svg';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -39,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 10,
     marginLeft: '25px',
   },
+  button: {
+    ...theme.typography.estimate,
+    borderRadius: '50px',
+    marginLeft: '50px',
+    marginRight: '25px',
+    height: '45px',
+  },
 }));
 
 const Header = () => {
@@ -56,6 +64,13 @@ const Header = () => {
               <Tab className={classes.tab} label="About us" />
               <Tab className={classes.tab} label="Contact us" />
             </Tabs>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Free Estimate
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
