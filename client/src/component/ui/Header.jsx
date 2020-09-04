@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -50,12 +50,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const handleChange = (e, value) => {
     setValue(value);
   };
+
+  useEffect(() => {
+    switch (window.location.pathname) {
+      case '/':
+        setValue(0);
+        break;
+      case '/services':
+        setValue(1);
+        break;
+      case '/revolution':
+        setValue(2);
+        break;
+      case '/about':
+        setValue(3);
+        break;
+      case '/contact':
+        setValue(4);
+        break;
+      case '/estimate':
+        setValue(5);
+        break;
+      default:
+        setValue(0);
+        break;
+    }
+  }, [value]);
+
   return (
     <React.Fragment>
       <ElevationScroll>
