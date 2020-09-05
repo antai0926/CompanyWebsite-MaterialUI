@@ -110,6 +110,19 @@ const Header = (props) => {
         break;
       case '/services':
         setValue(1);
+        setSelectedIndex(0);
+        break;
+      case '/customsoftware':
+        setValue(1);
+        setSelectedIndex(1);
+        break;
+      case '/mobileapps':
+        setValue(1);
+        setSelectedIndex(2);
+        break;
+      case '/websites':
+        setValue(1);
+        setSelectedIndex(3);
         break;
       case '/revolution':
         setValue(2);
@@ -145,7 +158,7 @@ const Header = (props) => {
             <Tabs
               value={value}
               onChange={handleChange}
-              classes={classes.tabContainer}
+              className={classes.tabContainer}
               indicatorColor="primary"
             >
               <Tab
