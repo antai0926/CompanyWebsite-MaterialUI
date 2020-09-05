@@ -82,7 +82,6 @@ const Header = (props) => {
 
   const handleChange = (e, value) => {
     setValue(value);
-    setOpen(true);
   };
   const handleClick = (e) => {
     setAnchorEl(e.target);
@@ -159,7 +158,7 @@ const Header = (props) => {
                 aria-owns={anchorEl ? 'simple-menu' : undefined}
                 aria-haspopup={anchorEl ? 'true' : undefined}
                 className={classes.tab}
-                onMouseEnter={handleClick}
+                onMouseOver={handleClick}
                 label="Sevices"
                 component={Link}
                 to="/services"
