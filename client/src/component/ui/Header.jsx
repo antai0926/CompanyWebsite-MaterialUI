@@ -98,7 +98,6 @@ const Header = (props) => {
         setValue(5);
         break;
       default:
-        setValue(0);
         break;
     }
   }, [value]);
@@ -171,13 +170,46 @@ const Header = (props) => {
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
             >
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/services"
+              >
+                Services
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/customsoftware"
+              >
                 Custom Software Development
               </MenuItem>
-              <MenuItem onClick={handleClose}>
-                Custom Software Development
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/mobileapps"
+              >
+                Mobile App Development
               </MenuItem>
-              <MenuItem onClick={handleClose}>Web Site Development</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/websites"
+              >
+                Web Site Development
+              </MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
