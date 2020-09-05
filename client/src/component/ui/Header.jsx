@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
     },
   },
-  selected: {
-    backgrounColor: 'black',
+  menuItemSelected: {
+    backgroundColor: '#065599 !important',
   },
 }));
 
@@ -211,7 +211,7 @@ const Header = (props) => {
                   to={option.link}
                   classes={{
                     root: classes.menuItem,
-                    selected: classes.seleted,
+                    selected: classes.menuItemSelected,
                   }}
                   selected={i === selectedIndex && value === 1}
                 >
