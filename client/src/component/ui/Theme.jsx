@@ -30,6 +30,22 @@ const theme = createMuiTheme({
       color: 'white',
     },
   },
+  overrides: {
+    MuiListItem: {
+      root: {
+        '&$selected': {
+          backgroundColor: '#065599',
+        },
+      },
+    },
+    MuiMenuItem: {
+      root: {
+        '&$selected': {
+          backgroundColor: '#065599',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
