@@ -19,6 +19,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import { setValue, setSelectedIndex } from '../../redux/page/page.action';
+import { useSelector, useDispatch } from 'react-redux';
+
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -124,14 +127,17 @@ const Header = () => {
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+
+  const value = useSelector((state) => state.page.value);
+  const dispatch = useDispatch();
+  const selectedIndex = useSelector((state) => state.page.selectedIndex);
+
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
+    dispatch(setValue(newValue));
   };
   const handleMouseOver = (e) => {
     setAnchorEl(e.currentTarget);
@@ -140,7 +146,7 @@ const Header = () => {
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
     setOpenMenu(false);
-    setSelectedIndex(i);
+    dispatch(setSelectedIndex(i));
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -188,9 +194,9 @@ const Header = () => {
       switch (window.location.pathname) {
         case `${route.link}`:
           if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
+            dispatch(setValue(route.activeIndex));
             if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+              dispatch(setSelectedIndex(route.selectedIndex));
             }
           }
           break;
@@ -240,7 +246,7 @@ const Header = () => {
             key={option.selectedIndex}
             onClick={(event) => {
               handleMenuItemClick(event, i);
-              setValue(1);
+              dispatch(setValue(1));
               handleClose();
             }}
             component={Link}
@@ -280,7 +286,7 @@ const Header = () => {
               classes={{ selected: classes.drawerItemSelected }}
               onClick={() => {
                 setOpenDrawer(false);
-                setValue(route.activeIndex);
+                dispatch(setValue(route.activeIndex));
               }}
             >
               <ListItemText disableTypography className={classes.drawerItem}>
@@ -291,7 +297,7 @@ const Header = () => {
           <ListItem
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              dispatch(setValue(5));
             }}
             divider
             button
@@ -327,7 +333,7 @@ const Header = () => {
             <Button
               component={Link}
               to="/"
-              onClick={() => setValue(0)}
+              onClick={() => dispatch(setValue(0))}
               className={classes.logoContainer}
               disableRipple
             >
