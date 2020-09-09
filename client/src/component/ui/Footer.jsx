@@ -90,7 +90,6 @@ const GridItem = ({ linkObjArr }) => {
 
 const Footer = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   return (
     <footer className={classes.footer}>
@@ -112,7 +111,7 @@ const Footer = () => {
                 selectedIndex: 1,
               },
               {
-                name: 'Mobile App Development',
+                name: 'iOS/Android App Development',
                 link: '/mobileapps',
                 value: 1,
                 selectedIndex: 2,
@@ -174,6 +173,7 @@ const Footer = () => {
           },
         ].map((el) => (
           <Grid
+            key={el.href}
             item
             component={'a'}
             href={el.href}
