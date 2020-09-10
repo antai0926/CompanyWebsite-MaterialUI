@@ -7,8 +7,11 @@ import Button from '@material-ui/core/Button';
 import ButtonArrow from './ButtonArrow';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import { setValue } from '../../redux/page/page.action';
+
 import background from '../../assets/background.jpg';
 import mobileBackground from '../../assets/mobileBackground.jpg';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   learnButton: {
@@ -40,10 +43,9 @@ const useStyles = makeStyles((theme) => ({
     width: 205,
     backgroundColor: theme.palette.common.orange,
     fontSize: '1.5rem',
-    // marginRight: 40,
-    // '&:hover': {
-    //   backgroundColor: theme.palette.secondary.light,
-    // },
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
 }));
 
@@ -52,6 +54,7 @@ const CallToAction = () => {
   const theme = useTheme();
   const matchSM = useMediaQuery(theme.breakpoints.down('sm'));
   const matchXS = useMediaQuery(theme.breakpoints.down('xs'));
+  const dispatch = useDispatch();
 
   return (
     <Grid
@@ -78,7 +81,13 @@ const CallToAction = () => {
             Take advantage of the 21st Century.
           </Typography>
           <Grid container item justify={matchSM ? 'center' : undefined}>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              component={Link}
+              to="/revolution"
+              variant="outlined"
+              className={classes.learnButton}
+              onClick={() => dispatch(setValue(2))}
+            >
               <span className={classes.buttonSpan}>Learn More</span>
               <ButtonArrow
                 width={10}
@@ -91,7 +100,13 @@ const CallToAction = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant="contained" className={classes.estimateButton}>
+        <Button
+          component={Link}
+          to="/estimate"
+          variant="contained"
+          className={classes.estimateButton}
+          onClick={() => dispatch(setValue(5))}
+        >
           Free Estimate
         </Button>
       </Grid>

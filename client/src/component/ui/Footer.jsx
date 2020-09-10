@@ -70,7 +70,7 @@ const GridItem = ({ linkObjArr }) => {
       <Grid container direction="column" className={classes.linkContainer}>
         {linkObjArr.map((el) => (
           <Grid
-            itme
+            item
             className={classes.link}
             key={el.name}
             component={Link}

@@ -7,14 +7,14 @@ const arcGrey = '#868686';
 const theme = createMuiTheme({
   palette: {
     common: {
-      blue: `${arcBlue}`,
-      orange: `${arcOrange}`,
+      blue: arcBlue,
+      orange: arcOrange,
     },
     primary: {
-      main: `${arcBlue}`,
+      main: arcBlue,
     },
     secondary: {
-      main: `${arcOrange}`,
+      main: arcOrange,
     },
   },
   typography: {
@@ -51,12 +51,12 @@ const theme = createMuiTheme({
     subtitle1: {
       fontSize: '1.25rem',
       fontWeight: 300,
-      color: "arcGrey",
+      color: arcGrey,
     },
     subtitle2: {
       fontSize: '1.25rem',
       fontWeight: 300,
-      color: "white",
+      color: 'white',
     },
     learnButton: {
       borderColor: arcBlue,
