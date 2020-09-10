@@ -14,6 +14,7 @@ import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
 import revolutionBackground from '../assets/repeatingBackground.svg';
+import infoBackground from '../assets/infoBackground.svg';
 
 const useStyles = makeStyles((theme) => ({
   animation: {
@@ -110,12 +111,26 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%',
+  },
+  infoItem: {
+    [theme.breakpoints.down('xs')]: {
+      margin: '3em 0',
+    },
+  },
 }));
 
 const LandingPage = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const defaultOptions = {
     loop: true,
@@ -329,6 +344,64 @@ const LandingPage = () => {
             </CardContent>
           </Card>
           {/* <div className={classes.revolutionBackground} /> */}
+        </Grid>
+      </Grid>
+
+      {/**-----Information Block---- */}
+      <Grid item style={{ height: matchXS ? '50em' : '80em' }}>
+        <Grid
+          container
+          direction={matchXS ? 'column' : 'row'}
+          alignItems="center"
+          className={classes.infoBackground}
+          justify={matchXS ? 'center' : 'space-between'}
+          style={{ padding: '5em' }}
+        >
+          <Grid item className={classes.infoItem}>
+            <Grid container direction="column">
+              <Typography variant="h2" style={{ color: 'white' }}>
+                About Us
+              </Typography>
+              <Typography variant="subtitle2">Let's get personal.</Typography>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  style={{ color: 'white', borderColor: 'white' }}
+                >
+                  <span className={classes.buttonSpan}>Learn More</span>
+                  <ButtonArrow width={10} height={10} fill="white" />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item className={classes.infoItem}>
+            <Grid
+              container
+              direction="column"
+              alignItems={matchXS ? 'center' : 'flex-end'}
+            >
+              <Typography variant="h2" style={{ color: 'white' }}>
+                Contact Us
+              </Typography>
+              <Typography variant="subtitle2">
+                Say hello!{' '}
+                <span role="img" aria-label="waving hand">
+                  👋🏻
+                </span>
+              </Typography>
+              <Grid item>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButton}
+                  style={{ color: 'white', borderColor: 'white' }}
+                >
+                  <span className={classes.buttonSpan}>Learn More</span>
+                  <ButtonArrow width={10} height={10} fill="white" />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
