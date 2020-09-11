@@ -58,6 +58,11 @@ const theme = createMuiTheme({
       fontWeight: 300,
       color: 'white',
     },
+    body1: {
+      fontSize: '1.25rem',
+      color: arcGrey,
+      fontWeight: 300,
+    },
     learnButton: {
       borderColor: arcBlue,
       color: arcBlue,
@@ -80,6 +85,27 @@ const theme = createMuiTheme({
       root: {
         '&$selected': {
           backgroundColor: '#065599',
+        },
+      },
+    },
+
+    MuiInputLabel: {
+      root: {
+        color: arcBlue,
+        fontSize: '1rem',
+      },
+    },
+    MuiInput: {
+      root: {
+        color: arcGrey,
+        fontWeight: 300,
+      },
+      underline: {
+        '&:before': {
+          borderBottom: `2px solid ${arcBlue}`,
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottom: `2px solid ${arcBlue}`,
         },
       },
     },

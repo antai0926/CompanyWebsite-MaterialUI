@@ -6,6 +6,7 @@ import theme from './ui/Theme';
 import Footer from './ui/Footer';
 
 import LandingPage from './LandingPage';
+import Contact from './Contact';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             component={() => <div>Revolution</div>}
           />
           <Route exact path="/about" component={() => <div>About</div>} />
-          <Route exact path="/contact" component={() => <div>Contact</div>} />
+          <Route exact path="/contact" component={Contact} />
           <Route exact path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
         <Footer />
