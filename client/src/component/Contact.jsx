@@ -183,7 +183,7 @@ const Contact = () => {
                 <TextField
                   multiline
                   rows={10}
-                  variant="outlined"
+                  InputProps={{ disableUnderline: true }}
                   id="message"
                   fullWidth
                   value={message}
