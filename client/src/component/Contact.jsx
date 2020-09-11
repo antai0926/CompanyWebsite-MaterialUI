@@ -78,9 +78,48 @@ const Contact = () => {
   const matchMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [name, setName] = useState('');
+  const [nameHelper, setNameHelper] = useState('');
+
   const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+
   const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
+
   const [message, setMessage] = useState('');
+
+  const handleOnChange = (event) => {
+    let valid;
+
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+      case 'phone':
+        setPhone(event.target.value);
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          event.target.value
+        );
+
+        if (!valid) {
+          setPhoneHelper('Invalid phone');
+        } else {
+          setPhoneHelper('');
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <Grid container derection="row">
@@ -129,7 +168,12 @@ const Contact = () => {
                   variant="body1"
                   style={{ color: theme.palette.common.blue }}
                 >
-                  0978-826-715
+                  <a
+                    href="tel:0978826715"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    0978-826-715
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -142,7 +186,12 @@ const Contact = () => {
                   variant="body1"
                   style={{ color: theme.palette.common.blue, fontSize: '1rem' }}
                 >
-                  antai0926@gmail.com
+                  <a
+                    href="mailto:antai0926@gmail.com"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    antai0926@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -164,19 +213,23 @@ const Contact = () => {
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label="Email"
+                  error={emailHelper.length !== 0}
+                  helperText={emailHelper}
                   id="email"
                   fullWidth
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={handleOnChange}
                 ></TextField>
               </Grid>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label="Phone"
+                  error={phoneHelper.length !== 0}
+                  helperText={phoneHelper}
                   id="phone"
                   fullWidth
                   value={phone}
-                  onChange={(event) => setPhone(event.target.value)}
+                  onChange={handleOnChange}
                 ></TextField>
               </Grid>
               <Grid item>
@@ -192,7 +245,16 @@ const Contact = () => {
                 ></TextField>
               </Grid>
               <Grid item justify="center" style={{ marginTop: '2em' }}>
-                <Button variant="contained" className={classes.sendButton}>
+                <Button
+                  disabled={
+                    name.length === 0 ||
+                    message.length === 0 ||
+                    phoneHelper.length !== 0 ||
+                    emailHelper.length !== 0
+                  }
+                  variant="contained"
+                  className={classes.sendButton}
+                >
                   Send message
                   <img
                     src={airplane}
