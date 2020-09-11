@@ -78,7 +78,6 @@ const Contact = () => {
   const matchMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [name, setName] = useState('');
-  const [nameHelper, setNameHelper] = useState('');
 
   const [email, setEmail] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
@@ -151,7 +150,7 @@ const Contact = () => {
                 variant="body1"
                 style={{ color: theme.palette.common.blue }}
               >
-                We're waiting.
+                We&apos;re waiting.
               </Typography>
             </Grid>
             <Grid item container style={{ marginTop: '2em' }}>

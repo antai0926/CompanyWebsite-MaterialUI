@@ -415,7 +415,9 @@ const LandingPage = () => {
               <Typography variant="h2" style={{ color: 'white' }}>
                 About Us
               </Typography>
-              <Typography variant="subtitle2">Let's get personal.</Typography>
+              <Typography variant="subtitle2">
+                Let&apos;s get personal.
+              </Typography>
               <Grid item>
                 <Button
                   component={Link}
