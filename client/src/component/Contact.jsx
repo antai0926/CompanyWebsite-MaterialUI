@@ -244,7 +244,12 @@ const Contact = () => {
                   onChange={(event) => setMessage(event.target.value)}
                 ></TextField>
               </Grid>
-              <Grid item justify="center" style={{ marginTop: '2em' }}>
+              <Grid
+                item
+                container
+                justify="center"
+                style={{ marginTop: '2em' }}
+              >
                 <Button
                   disabled={
                     name.length === 0 ||
