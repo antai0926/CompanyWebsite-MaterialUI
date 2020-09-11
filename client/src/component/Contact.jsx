@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import { Grid } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
 
 import { setValue } from '../redux/page/page.action';
 import ButtonArrow from './ui/ButtonArrow';
@@ -78,14 +80,13 @@ const Contact = () => {
   const matchMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [name, setName] = useState('');
-
   const [email, setEmail] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
-
   const [phone, setPhone] = useState('');
   const [phoneHelper, setPhoneHelper] = useState('');
-
   const [message, setMessage] = useState('');
+
+  const [open, setOpen] = useState(false);
 
   const handleOnChange = (event) => {
     let valid;
@@ -253,6 +254,7 @@ const Contact = () => {
                   }
                   variant="contained"
                   className={classes.sendButton}
+                  onClick={() => setOpen(true)}
                 >
                   Send message
                   <img
@@ -266,6 +268,94 @@ const Contact = () => {
           </Grid>
         </Grid>
       </Grid>
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogContent>
+          <Grid container direction="column" alignItems="center">
+            <Grid item>
+              <Typography variant="h4" gutterBottom>
+                {' '}
+                Confirm Message
+              </Typography>
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Name"
+                id="name"
+                fullWidth
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              ></TextField>
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Email"
+                error={emailHelper.length !== 0}
+                helperText={emailHelper}
+                id="email"
+                fullWidth
+                value={email}
+                onChange={handleOnChange}
+              ></TextField>
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField
+                label="Phone"
+                error={phoneHelper.length !== 0}
+                helperText={phoneHelper}
+                id="phone"
+                fullWidth
+                value={phone}
+                onChange={handleOnChange}
+              ></TextField>
+            </Grid>
+            <Grid item>
+              <TextField
+                multiline
+                rows={10}
+                InputProps={{ disableUnderline: true }}
+                id="message"
+                fullWidth
+                value={message}
+                className={classes.message}
+                onChange={(event) => setMessage(event.target.value)}
+              ></TextField>
+            </Grid>
+          </Grid>
+          <Grid item container style={{ marginTop: '2em' }} alignItems="center">
+            <Grid item>
+              <Button
+                style={{ fontWeight: 300 }}
+                color="primary"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                disabled={
+                  name.length === 0 ||
+                  message.length === 0 ||
+                  phoneHelper.length !== 0 ||
+                  emailHelper.length !== 0
+                }
+                variant="contained"
+                className={classes.sendButton}
+                onClick={() => setOpen(true)}
+              >
+                Send message
+                <img
+                  src={airplane}
+                  alt="paper airplane"
+                  style={{ marginLeft: '1rem' }}
+                />
+              </Button>
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+
       <Grid
         item
         container
