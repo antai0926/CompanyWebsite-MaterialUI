@@ -69,6 +69,10 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
+    [theme.breakpoints.down('sm')]: {
+      height: 40,
+      width: 225,
+    },
   },
 }));
 
@@ -76,8 +80,9 @@ const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch();
-  const matchSM = useMediaQuery(theme.breakpoints.down('sm'));
   const matchMD = useMediaQuery(theme.breakpoints.down('md'));
+  const matchSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -137,7 +142,7 @@ const Contact = () => {
         lg={4}
       >
         <Grid item>
-          <Grid container direction="column">
+          <Grid container direction="column" style={{ width: '20em' }}>
             <Grid item>
               <Typography
                 align={matchMD ? 'center' : undefined}
@@ -274,7 +279,23 @@ const Contact = () => {
         </Grid>
       </Grid>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog
+        style={{ zIndex: 1302 }}
+        open={open}
+        fullScreen={matchXS}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          style: {
+            padding: matchXS
+              ? '1em 0'
+              : matchSM
+              ? '5em 5em'
+              : matchMD
+              ? '5em 10em'
+              : '5em 20em',
+          },
+        }}
+      >
         <DialogContent>
           <Grid container direction="column" alignItems="center">
             <Grid item>
@@ -327,7 +348,13 @@ const Contact = () => {
               ></TextField>
             </Grid>
           </Grid>
-          <Grid item container style={{ marginTop: '2em' }} alignItems="center">
+          <Grid
+            item
+            container
+            direction={matchSM ? 'column' : 'row'}
+            style={{ marginTop: '2em' }}
+            alignItems="center"
+          >
             <Grid item>
               <Button
                 style={{ fontWeight: 300 }}
